@@ -1,0 +1,622 @@
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+		font-weight: 300;
+		font-size: 16px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1000px;
+	}
+
+	h1 {
+		font-weight: 300;
+	}
+
+	.disclaimerbox {
+		background-color: #eee;
+		border: 1px solid #eeeeee;
+		border-radius: 10px;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+	}
+
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+	}
+
+	img.rounded {
+		border: 1px solid #eeeeee;
+		border-radius: 10px;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+	}
+
+	a:link,
+	a:visited {
+		color: #1367a7;
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: #208799;
+	}
+
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+
+	.layered-paper-big {
+		/* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+			0px 0px 1px 1px rgba(0, 0, 0, 0.35),
+			/* The top layer shadow */
+			5px 5px 0 0px #fff,
+			/* The second layer */
+			5px 5px 1px 1px rgba(0, 0, 0, 0.35),
+			/* The second layer shadow */
+			10px 10px 0 0px #fff,
+			/* The third layer */
+			10px 10px 1px 1px rgba(0, 0, 0, 0.35),
+			/* The third layer shadow */
+			15px 15px 0 0px #fff,
+			/* The fourth layer */
+			15px 15px 1px 1px rgba(0, 0, 0, 0.35),
+			/* The fourth layer shadow */
+			20px 20px 0 0px #fff,
+			/* The fifth layer */
+			20px 20px 1px 1px rgba(0, 0, 0, 0.35),
+			/* The fifth layer shadow */
+			25px 25px 0 0px #fff,
+			/* The fifth layer */
+			25px 25px 1px 1px rgba(0, 0, 0, 0.35);
+		/* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper {
+		/* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+			0px 0px 1px 1px rgba(0, 0, 0, 0.35),
+			/* The top layer shadow */
+			5px 5px 0 0px #fff,
+			/* The second layer */
+			5px 5px 1px 1px rgba(0, 0, 0, 0.35),
+			/* The second layer shadow */
+			10px 10px 0 0px #fff,
+			/* The third layer */
+			10px 10px 1px 1px rgba(0, 0, 0, 0.35);
+		/* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+
+	.vert-cent {
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	hr {
+		border: 0;
+		height: 1.5px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+
+	.author_image {
+		text-align: center;
+	}
+
+        * {box-sizing: border-box;}
+        .img-comp-container {
+                position: relative;
+                width : 722px;
+                height: 512px;
+                margin: 0 auto;
+        }
+      
+        .img-comp-img {
+                position: absolute;
+                object-position: 0 0; 
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                overflow: hidden;
+        }
+        
+        .img-comp-img img {
+                display:block;
+                vertical-align:middle;
+        }
+	.img-comp-overlay img {
+  		display: block;
+  		vertical-align: middle;
+		object-position: 0 0; 
+		width: auto;
+  		height: 100%;
+		object-fit: cover;
+	}
+
+        .img-comp-slider {
+                position: absolute;
+                z-index:9;
+                cursor: ew-resize;
+                /*set the appearance of the slider:*/
+                width: 40px;
+                height: 40px;
+                background-color: #2196F3;
+                opacity: 0.7;
+                border-radius: 50%;
+        }
+        
+        .previous, 
+        .next {
+                cursor: pointer;
+                position: absolute;
+                top: 40%;
+                width: auto;
+                padding: 16px;
+                margin-top: 30px;
+                color: deepskyblue;
+                font-weight: bold;
+                font-size: 20px;
+                border-radius: 0 3px 3px 0;
+                user-select: none;
+                -webkit-user-select: none;
+        }
+        
+        .next {
+                right: 0;
+                border-radius: 3px 0 0 3px;
+        }
+
+        .previous:hover,
+        .next:hover {
+                background-color: rgba(0, 0, 0, 0.8);
+        }
+	.dot {
+		cursor: pointer;
+		height: 15px;
+		width: 15px;
+		margin: 0 2px;
+		background-color: #bbb;
+		border-radius: 50%;
+		display: inline-block;
+		transition: background-color 0.6s ease;
+	}
+
+	.active, .dot:hover {
+		background-color: #717171;
+	}       
+
+</style>
+
+<script>
+
+function initComparisons() {
+  	var x, i;
+  	/* Find all elements with an "overlay" class: */
+  	c = document.getElementsByClassName("img-comp-container")[0];
+  	c.addEventListener('mouseenter', pause);
+  	c.addEventListener('mouseleave', resume);
+
+  	x = document.getElementsByClassName("img-comp-overlay");
+  	for (i = 0; i < x.length; i++) {
+    	/* Once for each "overlay" element:
+    	pass the "overlay" element as a parameter when executing the compareImages function: */
+    	compareImages(x[i]);
+	}
+  	function pause(){
+   		clearInterval(myTimer);
+	}
+  	function resume(){
+   		clearInterval(myTimer);
+		myTimer = setInterval(function(){plusSlides(slideIndex)}, 5000);
+	}
+  	function compareImages(img) {
+    	var slider, img, clicked = 0, w, h;
+    	/* Get the width and height of the img element */
+    	w = img.offsetWidth;
+    	h = img.offsetHeight;
+    	/* Set the width of the img element to 50%: */
+    	img.style.width = (w/2 ) + "px";
+    	/* Create slider: */
+    	slider = document.createElement("DIV");
+    	slider.setAttribute("class", "img-comp-slider");
+    	/* Insert slider */
+    	img.parentElement.insertBefore(slider, img);
+    	/* Position the slider in the middle: */
+    	slider.style.top = (h / 2) - (slider.offsetHeight / 2) + "px";
+    	slider.style.left = (w / 2) - (slider.offsetWidth / 2) + "px";
+    	/* Execute a function when the mouse button is pressed: */
+    	slider.addEventListener("mousedown", slideReady);
+    	/* And another function when the mouse button is released: */
+    	window.addEventListener("mouseup", slideFinish);
+    	/* Or touched (for touch screens: */
+    	slider.addEventListener("touchstart", slideReady);
+     	/* And released (for touch screens: */
+    	window.addEventListener("touchend", slideFinish);
+	
+    	function slideReady(e) {
+      		/* Prevent any other actions that may occur when moving over the image: */
+      		e.preventDefault();
+      		/* The slider is now clicked and ready to move: */
+      		clicked = 1;
+      		/* Execute a function when the slider is moved: */
+      		window.addEventListener("mousemove", slideMove);
+      		window.addEventListener("touchmove", slideMove);
+	  	}
+    	function slideFinish() {
+      		/* The slider is no longer clicked: */
+      		clicked = 0;
+    	}
+		
+    	function slideMove(e) {
+      		var pos;	  
+		
+      		/* If the slider is no longer clicked, exit this function: */
+      		if (clicked == 0) return false;
+      		/* Get the cursor's x position: */
+      		pos = getCursorPos(e)
+      		/* Prevent the slider from being positioned outside the image: */
+      		if (pos < 0) pos = 0;
+      		if (pos > w) pos = w;
+      		/* Execute a function that will resize the overlay image according to the cursor: */
+      		slide(pos);
+    	}
+		
+    	function getCursorPos(e) {
+      		var a, x = 0;
+      		e = e || window.event;
+      		/* Get the x positions of the image: */
+      		a = img.getBoundingClientRect();
+      		/* Calculate the cursor's x coordinate, relative to the image: */
+      		x = e.pageX - a.left;
+      		/* Consider any page scrolling: */
+      		x = x - window.pageXOffset;
+      		return x;
+    	}
+		
+    	function slide(x) {
+      		/* Resize the image: */
+      		img.style.width = x + "px";
+      		/* Position the slider: */
+      		slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+    	}	 
+	}
+} 
+	
+function initSlideShow(n){
+	myTimer=setInterval(function(){plusSlides(1)},5000);
+}
+
+
+function plusSlides(n) {
+  	showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  	showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  	var i;
+  	var slides = document.getElementsByClassName("mySlides");
+  	var dots = document.getElementsByClassName("dot");
+  	var captionText = document.getElementById("caption");
+  	if (n > slides.length) {slideIndex = 1}
+  	if (n < 1) {slideIndex = slides.length}
+  	for (i = 0; i < slides.length; i++) {
+      	slides[i].style.display = "none";
+  	}
+  	for (i = 0; i < dots.length; i++) {
+		dots[i].className = dots[i].className.replace(" active", "");
+  	}
+  	slides[slideIndex-1].style.display = "block";
+  	dots[slideIndex-1].className += " active";
+  	captionText.innerHTML = dots[slideIndex-1].alt;
+}
+		
+function changeImg(n,target){
+	n.parentNode.childNodes[1].style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+	n.parentNode.childNodes[3].style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+	n.style.backgroundColor = "rgba(0, 191, 255, 0.5)";
+	var img = n.parentNode.getElementsByTagName('img')[0];
+	var name = img.src;
+	var sp = name.split("/");
+	var path = target.concat("/",sp[sp.length-1]);
+	img.src = path;
+}
+
+</script>
+
+<html>
+
+<head>
+	<title>Single Image Depth Prediction Made Better: A Multivariate Gaussian Take</title>
+	<meta property="og:image" content="" />
+	<meta property="og:title" content="Single Image Depth Prediction Made Better: A Multivariate Gaussian Take" />
+	<link href='https://fonts.googleapis.com/css?family=Lora:400italic' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<br>
+	<center>
+		<span style="font-size:36px">Single Image Depth Prediction Made Better: <br> A Multivariate Gaussian Take</span>
+	</center>
+	<br>
+
+	<table align=center width=750px>
+		<tr>
+			<td align=center width=100px>
+				<center>
+					<span style="font-size:18px"><a href="https://github.com/cnexah">Ce Liu</a><sup>1</sup></span>
+				</center>
+			</td>
+			<td align=center width=100px>
+				<center>
+					<span style="font-size:18px"><a href="https://suryanshkumar.github.io/">Suryansh Kumar</a><sup>1</sup></span>
+				</center>
+			</td>
+			<td align=center width=100px>
+				<center>
+					<span style="font-size:18px"><a href="https://shuhanggu.github.io">Shuhang Gu</a><sup>2</sup></span>
+				</center>
+			</td>
+			<td align=center width=100px>
+				<center>
+					<span style="font-size:18px"><a href="https://www.informatik.uni-wuerzburg.de/computervision/home">Radu Timofte</a><sup>1, 3</sup></span>
+				</center>
+			</td>
+			<td align=center width=100px>
+				<center>
+					<span style="font-size:18px"><a href="https://scholar.google.com/citations?user=TwMib_QAAAAJ&hl=en">Luc Van Gool</a><sup>1, 4</sup></span>
+				</center>
+			</td>
+		</tr>
+	</table>
+
+	<table align=center width=700px>
+		<tr>
+			<td align=center width=100px>
+				<center>
+					<span style="font-size:20px">CVL ETH Zürich<sup>1</sup>, UESTC China<sup>2</sup>, University of Würzburg<sup>3</sup>, KU Lueven<sup>4</sup></span>
+				</center>
+			</td>
+		</tr>
+	</table>
+
+	<table align=center width=800px>
+		<tr>
+			<td align=center width=100px>
+				<center>
+					<span style="font-size:20px">The IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2023 .
+					</span>
+				</center>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<!-- Image for the project-->
+	<table align=center width=900px>
+		<tr>
+			<td width=450px>
+				<center>
+					<a><img src="./images/teaser.png" height="200px"></img></href></a><br>
+				</center>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<hr>
+
+	<!-- Abstract of the project-->
+	<p style="text-align: justify;">
+		<span style="font-weight:bold">Abstract</span>
+		<br>
+		<font style="font-family: Lora; font-size: 100%">
+		Neural-network-based single image depth prediction (SIDP) is a challenging task where the goal is to predict the scene's per-pixel depth at test time. Since the problem, by definition, is ill-posed, the fundamental goal is to come up with an approach that can reliably model the scene depth from a set of training examples. In the pursuit of perfect depth estimation, most existing state-of-the-art learning techniques predict a single scalar depth value per-pixel. Yet, it is well-known that the trained model has accuracy limits and can predict imprecise depth. Therefore, an SIDP approach must be mindful of the expected depth variations in the model's prediction at test time. Accordingly, we introduce an approach that performs continuous modeling of per-pixel depth, where we can predict and reason about the per-pixel depth and its distribution. To this end, we model per-pixel scene depth using  a multivariate Gaussian distribution.
+Moreover, contrary to the existing uncertainty modeling methods---in the same spirit, where per-pixel depth is assumed to be independent, we introduce per-pixel covariance modeling that encodes its depth dependency w.r.t. all the scene points. Unfortunately, per-pixel depth covariance modeling leads to a computationally expensive continuous loss function, which we solve efficiently using the learned low-rank approximation of the overall covariance matrix. Notably, when tested on benchmark datasets such as KITTI, NYU, and SUN-RGB-D, the SIDP model obtained by optimizing our loss function shows state-of-the-art results. Our method's accuracy (named MG) is among the top on the KITTI depth-prediction benchmark leaderboard.
+		</font>
+	</p><br><br>
+	<hr>
+
+	<!--Paper title, thumbnails, and publication details -->
+	<table align=center width=1000>
+		<center>
+			<h1>Paper</h1>
+		</center>
+		<tr>
+			<td><a href="https://arxiv.org/abs/2303.18164"><img style="height:200px" src="./images/papershot2.png" /></a></td>
+			<td><span style="font-size:16pt">Single Image Depth Prediction Made Better: A Multivariate Gaussian Take<br><br>
+			<i>Ce Liu, Suryansh Kumar, Shuhang Gu, Radu Timofte, Luc Van Gool.</i><br><br>
+			<span style="font-weight:bold">CVPR</span> 2023, Vancouver, Canada.<br></td>
+		</tr>
+	</table>
+	<br>
+
+	<!-- paper link, supplementary link, bibtex link-->
+	<table align=center width=250px>
+		<tr>
+			<td>
+				<span style="font-size:14pt">
+					<center><a href="https://arxiv.org/abs/2303.18164">[Paper]</a>
+					</center>
+				</span>
+			</td>
+
+
+			<td>
+				<span style="font-size:14pt">
+					<center><a href="https://github.com/cnexah">[Code]</a>
+					</center>
+				</span>
+			</td>
+
+			<td><span style="font-size:14pt">
+					<center><a href="./bibtex.txt">[Bibtex]</a></center>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<hr>
+	
+
+	<!--Results (Pictures or Youtube link) or Presentation link-->
+
+	<center>
+		<h1>Qualitative Results</h1>
+	</center><br><br>
+        <center>
+	<span style="font-size:16px">The model is trained on NYU Depth V2, and evaluated on SUN RGB-D without fine-tuning.</span>
+	</center>
+        <h1></h1>
+	<table align=center height="512px" width="722px">
+		<!--Video link-->
+		<tr height="512px" width="722px">
+			<td valign="top" width="722px" height="512px">
+				
+                                <div class="img-comp-container">
+					<div class="mySlides">
+						<div class="img-comp-img ">
+						<img src="results/depth_7.png" width="722px" height="512px"/>
+						</div>
+						<div class="img-comp-img img-comp-overlay">
+						<img src="results/image_7.jpg" width="722px" height="512px"/>
+						</div>
+					</div>
+					<div class="mySlides">
+						<div class="img-comp-img ">
+						<img src="results/depth_0.png" width="722px" height="512px"/>
+						</div>
+						<div class="img-comp-img img-comp-overlay">
+						<img src="results/image_0.jpg" width="722px" height="512px"/>
+						</div>
+					</div>
+					<div class="mySlides">
+						<div class="img-comp-img ">
+						<img src="results/depth_6.png" width="722px" height="512px"/>
+						</div>
+						<div class="img-comp-img img-comp-overlay">
+						<img src="results/image_6.jpg" width="722px" height="512px"/>
+						</div>
+					</div>
+					<div class="mySlides">
+						<div class="img-comp-img ">
+						<img src="results/depth_2.png" width="722px" height="512px"/>
+						</div>
+						<div class="img-comp-img img-comp-overlay">
+						<img src="results/image_2.jpg" width="722px" height="512px"/>
+						</div>
+					</div>
+					<div class="mySlides">
+						<div class="img-comp-img ">
+						<img src="results/depth_4.png" width="722px" height="512px"/>
+						</div>
+						<div class="img-comp-img img-comp-overlay">
+						<img src="results/image_4.jpg" width="722px" height="512px"/>
+						</div>
+					</div>
+					<!-- Next and previous buttons -->
+  					<a class="previous" onclick="plusSlides(-1)">&#10094;</a>
+  					<a class="next" onclick="plusSlides(1)">&#10095;</a>
+  				</div>
+				<br>
+
+				<div style="text-align:center">
+					<span class="dot" onclick="currentSlide(1)"></span> 
+					<span class="dot" onclick="currentSlide(2)"></span> 
+					<span class="dot" onclick="currentSlide(3)"></span>
+					<span class="dot" onclick="currentSlide(4)"></span>
+					<span class="dot" onclick="currentSlide(5)"></span>
+				</div>
+					
+				<script>
+					initComparisons();
+				</script>
+
+
+				<script>	
+					var slideIndex = 1;
+					initSlideShow(slideIndex);
+					currentSlide(slideIndex);
+				</script>
+				
+			</td>
+		</tr>
+	</table>
+	<br>
+	<hr>
+	
+ 	<!--Authors-->
+	<table align=center width=1100px>
+		<center>
+			<h1>Authors</h1>
+		</center>
+		<tr>
+			<td>
+				<div class="author_image"><img style="height:150px" src="./images/authors/ce.jpg"><p>Ce Liu</p></div>
+			</td>
+			<td>
+				<div class="author_image"><img style="height:150px" src="./images/authors/suryansh.jpg"><p>Suryansh Kumar</p></div>
+			</td>
+			<td>
+				<div class="author_image"><img style="height:150px" src="./images/authors/shuhang.jpg"><p>Shuhang Gu</p></div>
+			</td>
+			<td>
+				<div class="author_image"><img style="height:150px" src="./images/authors/radu.jpg"><p>Radu Timofte</p></div>
+			</td>
+			<td>
+				<div class="author_image"><img style="height:150px" src="./images/authors/luc.png">
+				<p>Luc Van Gool</p></div>
+				
+			</td>
+
+		</tr>
+	</table>
+	<hr>
+	
+
+
+	<!--Acknowledgements-->
+	<table align=center width=1100px>
+		<center>
+			<h1>Acknowledgements</h1>
+		</center>
+		<tr>
+
+			<td>
+				<p style="text-align: justify;">
+					This work was partly supported by ETH General Fund (OK), Chinese Scholarship Council (CSC), and The Alexander von Humboldt Foundation.
+				</p>
+			</td>
+		</tr>
+	</table>
+	<br><br>
+</body>
+
+</html>
+
+

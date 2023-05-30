@@ -1,0 +1,8 @@
+@InProceedings{Liu_2023_CVPR,
+    author    = {Liu, Ce and Kumar, Suryansh and Gu, Shuhang and Timofte, Radu and Van Gool, Luc},
+    title     = {Single Image Depth Prediction Made Better: A Multivariate Gaussian Take},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2023},
+    pages     = {17346-17356}
+}
